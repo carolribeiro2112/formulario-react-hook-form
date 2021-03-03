@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FFF;
+}
+
 h1{
   text-align: center;
 }
@@ -7,10 +14,27 @@ form{
   align-items: center;
 }
 
-form input {
-  margin-bottom: 8px;
+form .MuiFormControl-root {
+  margin-bottom: 15px;
+  
 }
 
-form button {
-  margin-top: 8px;
+form button{
+  margin-top: 10px;
+  width: 200px;
+  height: 50px;
+  border: none;
+  background-color: rgb(58, 161, 58);
+  color: #FFF;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
+
+form button:hover{
+  background-color: rgb(18, 112, 18);
+}
+

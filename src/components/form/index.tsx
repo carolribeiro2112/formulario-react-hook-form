@@ -1,3 +1,4 @@
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@material-ui/core';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import './styles.css'
@@ -15,24 +16,41 @@ const Formulario = () => {
       <h1>Formulário</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input ref={register({required:true})} type="text" name='name'placeholder="Nome"/>
-        {errors.name && <p>Nome obrigatório</p>}
-        <input ref={register} type="text" name='city'placeholder="cidade"/>
-        <input ref={register({required:true})} type="email" name='email'placeholder="e-mail"/>
+        <TextField 
+          inputRef={register({required:true})} 
+          id="outlined-basic" label="nome" 
+          variant="outlined" 
+          type="text" name='nome'
+        />
+        {errors.nome && <p>Nome obrigatório</p>}
+
+        <TextField  inputRef={register} variant="outlined" type="text" name='city'label="cidade"/>
+
+        <TextField  inputRef={register({required:true})} variant="outlined" type="email" name='email'label="e-mail"/>
         {errors.email && <p>E-mail obrigatório</p>}
-        <input ref={register({required:true, min:18})} type='number' name='age' placeholder="idade"/>
+
+        <TextField  inputRef={register({required:true, min:18})} variant="outlined" type='number' name='age' label="idade"/>
         {errors.age?.type === "required"  && <p>idade obrigatória</p>}
         {errors.age?.type==="min" && <p>usuário deve ser maior de 18 anos</p>}
-        <label>Estado Civil</label>
-        <input ref={register} type="radio" name="civil-state" value="casado"/>casado
-        <input ref={register} type="radio" name="civil-state" value="solteiro"/>solteiro
-        <input ref={register} type="radio" name="civil-state" value="divorciado"/>divorciado
-        <input ref={register} type="radio" name="civil-state" value="viúvo"/>viúvo
+        
+        <FormControl component="fieldset">
+        <FormLabel component="legend">Estado Civil</FormLabel>
+          <RadioGroup aria-label="gender" name="civil-state">
+            <FormControlLabel inputRef={register} value="casado" control={<Radio />} label="casado" />
+            <FormControlLabel inputRef={register} value="solteiro" control={<Radio />} label="solteiro" />
+            <FormControlLabel inputRef={register} value="divorciado" control={<Radio />} label="divorciado" />
+            <FormControlLabel inputRef={register} value="viúvo" control={<Radio />} label="viúvo" />
+          </RadioGroup>
+        </FormControl>
         {
           casado ==='casado' && (
             <div>
-              <label>Nome do conjuge</label>
-              <input type="text" name='conjuge' ref={register}/>
+              <TextField 
+                inputRef={register} 
+                id="outlined-basic" label="nome do conjuge" 
+                variant="outlined" 
+                type="text" name='nome do conjuge'
+              />
             </div>
           )
         }
